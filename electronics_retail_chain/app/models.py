@@ -17,6 +17,13 @@ class Network(models.Model):
     )
     type = models.CharField(max_length=15, verbose_name='сеть', choices=TYPES)
 
+    def __str__(self):
+        return self.type
+
+    class Meta:
+        verbose_name = "Сеть"
+        verbose_name_plural = "Сети"
+
 
 class Contacts(models.Model):
     email = models.EmailField(max_length=70, unique=True, verbose_name='email')
@@ -24,6 +31,9 @@ class Contacts(models.Model):
     town = models.CharField(max_length=150, verbose_name='город')
     street = models.CharField(max_length=150, verbose_name='улица')
     house = models.CharField(max_length=30, verbose_name='номер дома')
+
+    def __str__(self):
+        return f"{self.email} - {self.country}"
 
     class Meta:
         verbose_name = "Контакты"
@@ -34,6 +44,9 @@ class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='название')
     model = models.CharField(max_length=100, verbose_name='модель')
     date = models.DateField(verbose_name='дата выхода на рынок')
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = "Продукт"
@@ -59,6 +72,9 @@ class Link(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='время создания')
     network = models.ForeignKey(Network, on_delete=models.CASCADE, verbose_name='сеть')
+
+    def __str__(self):
+        return f"{self.name} - {self.network}"
 
     class Meta:
         verbose_name = "звено"
