@@ -44,11 +44,22 @@ class Link(models.Model):
     name = models.CharField(max_length=100, verbose_name='название')
     contacts = models.ForeignKey(Contacts, on_delete=models.CASCADE, verbose_name='контакты')
     products = models.ManyToManyField(Product, verbose_name='продукт')
-    supplier = models.ForeignKey('self', on_delete=models.SET_NULL, verbose_name='поставщик', **NULLABLE)
-    debt = models.FloatField(verbose_name='задолженность перед поставщиком', **NULLABLE)
+    supplier = models.ForeignKey(
+        'self',
+        on_delete=models.SET_NULL,
+        verbose_name='поставщик',
+        related_name='suppliers',
+        **NULLABLE
+    )
+    debt = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='задолженность перед поставщиком',
+        **NULLABLE
+    )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='время создания')
     network = models.ForeignKey(Network, on_delete=models.CASCADE, verbose_name='сеть')
 
     class Meta:
-        verbose_name = "Unit"
-        verbose_name_plural = "Units"
+        verbose_name = "звено"
+        verbose_name_plural = "звенья"
