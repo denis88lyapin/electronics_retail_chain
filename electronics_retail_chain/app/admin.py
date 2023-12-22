@@ -6,16 +6,19 @@ from .models import Network, Contacts, Product, Link
 
 
 class LinkAdmin(admin.ModelAdmin):
-    list_display = ('name', 'contacts', 'supplier', 'debt', 'created_at', 'network', 'supplier_url')
+    list_display = ('name', 'contacts', 'supplier', 'products_list', 'debt', 'created_at', 'network', 'supplier_url')
     list_filter = ('contacts__town', 'network__type')
     search_fields = ('name', 'contacts__town')
-
+    list_select_related = ('contacts', 'supplier', 'network')
     actions = ['clear_debt']
 
     def supplier_url(self, obj):
         if obj.supplier:
             url = reverse('admin:app_link_change', args=[obj.supplier.id])
             return format_html("<a href='{}'>{}</a>", url, obj.supplier)
+
+    def products_list(self, obj):
+        return ",\n ".join([product.name for product in obj.products.all()])
 
     @admin.action(description='Clear debt')
     def clear_debt(self, request, queryset):

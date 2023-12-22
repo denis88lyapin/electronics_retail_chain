@@ -43,7 +43,7 @@ class Contacts(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='название')
     model = models.CharField(max_length=100, verbose_name='модель')
-    date = models.DateField(verbose_name='дата выхода на рынок')
+    date = models.DateField(verbose_name='дата выхода на рынок', **NULLABLE)
 
     def __str__(self):
         return self.name
