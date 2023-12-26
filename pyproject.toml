@@ -8,6 +8,12 @@ packages = [{include = "electronics_retail_chain"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+djangorestframework = "^3.14.0"
+djangorestframework-simplejwt = "^5.3.1"
+django = "^5.0"
+django-filter = "^23.5"
+python-dotenv = "^1.0.0"
+pillow = "^10.1.0"
 
 
 [build-system]
