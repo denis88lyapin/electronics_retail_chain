@@ -1,0 +1,93 @@
+[
+  {
+    "model": "app.network",
+    "pk": 1,
+    "fields": {
+      "type": "factory"
+    }
+  },
+  {
+    "model": "app.network",
+    "pk": 2,
+    "fields": {
+      "type": "retail"
+    }
+  },
+  {
+    "model": "app.network",
+    "pk": 3,
+    "fields": {
+      "type": "entrepreneur"
+    }
+  },
+  {
+    "model": "app.contacts",
+    "pk": 1,
+    "fields": {
+      "email": "denis88lyapin@gmail.com",
+      "country": "Тест",
+      "town": "Коломна",
+      "street": "Захарова 10/3",
+      "house": "47"
+    }
+  },
+  {
+    "model": "app.contacts",
+    "pk": 2,
+    "fields": {
+      "email": "denis@gmail.com",
+      "country": "Тест",
+      "town": "Москва",
+      "street": "Захарова 10/3",
+      "house": "47"
+    }
+  },
+  {
+    "model": "app.product",
+    "pk": 1,
+    "fields": {
+      "name": "iPhone",
+      "model": "546efg",
+      "date": "2023-12-22"
+    }
+  },
+  {
+    "model": "app.product",
+    "pk": 2,
+    "fields": {
+      "name": "Samsung 55'' OLED 4K S95C",
+      "model": "546efg",
+      "date": "2023-12-22"
+    }
+  },
+  {
+    "model": "app.link",
+    "pk": 1,
+    "fields": {
+      "name": "Denis",
+      "contacts": 1,
+      "supplier": null,
+      "debt": null,
+      "created_at": "2023-12-26T18:29:32.261Z",
+      "network": 1,
+      "products": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "app.link",
+    "pk": 2,
+    "fields": {
+      "name": "Телевизоры",
+      "contacts": 2,
+      "supplier": 1,
+      "debt": null,
+      "created_at": "2023-12-26T18:31:28.496Z",
+      "network": 2,
+      "products": [
+        1
+      ]
+    }
+  }
+]
