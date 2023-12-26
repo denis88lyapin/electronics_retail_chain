@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Link, Contacts, Product, Network
+from .validators import SupplierValidator
 
 
 class NetworkSerializer(serializers.ModelSerializer):
@@ -11,13 +12,7 @@ class NetworkSerializer(serializers.ModelSerializer):
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contacts
-        fields = (
-            "email",
-            "country",
-            "town",
-            "street",
-            "house"
-        )
+        fields = '__all__'
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -27,12 +22,10 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class LinkSerializer(serializers.ModelSerializer):
-    contacts = ContactSerializer()
-    products = ProductSerializer(many=True)
-    network = NetworkSerializer()
+    level = serializers.IntegerField(read_only=True, source='suppliers.count')
 
     class Meta:
         model = Link
         fields = '__all__'
         read_only_fields = ('debt',)
-
+        validators = [SupplierValidator(supplier_field='supplier', network_field='network')]
